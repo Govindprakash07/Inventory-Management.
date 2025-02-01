@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+</head>
+<body>
+    <h1>Add New Product</h1>
+    <form action="/add" method="POST">
+        <input type="text" name="name" placeholder="Product Name" required>
+        <input type="number" name="quantity" placeholder="Quantity" required>
+        <input type="number" name="price" placeholder="Price" required>
+        <button type="submit">Add Product</button>
+    </form>
+    <a href="/">⬅️ Back to Inventory</a>
+</body>
+</html>
