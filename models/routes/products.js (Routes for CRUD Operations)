@@ -1,0 +1,44 @@
+const express = require("express");
+const Product = require("../models/Product");
+
+const router = express.Router();
+
+// Show All Products
+router.get("/", async (req, res) => {
+    const products = await Product.find();
+    res.render("index", { products });
+});
+
+// Add Product Page
+router.get("/add", (req, res) => {
+    res.render("addProduct");
+});
+
+// Handle Add Product
+router.post("/add", async (req, res) => {
+    const { name, quantity, price } = req.body;
+    const newProduct = new Product({ name, quantity, price });
+    await newProduct.save();
+    res.redirect("/");
+});
+
+// Edit Product Page
+router.get("/edit/:id", async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    res.render("editProduct", { product });
+});
+
+// Handle Edit Product
+router.post("/edit/:id", async (req, res) => {
+    const { name, quantity, price } = req.body;
+    await Product.findByIdAndUpdate(req.params.id, { name, quantity, price });
+    res.redirect("/");
+});
+
+// Delete Product
+router.get("/delete/:id", async (req, res) => {
+    await Product.findByIdAndDelete(req.params.id);
+    res.redirect("/");
+});
+
+module.exports = router;
