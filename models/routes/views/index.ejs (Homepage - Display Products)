@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory Management</title>
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+    <h1>📦 Inventory Management</h1>
+    <a href="/add">➕ Add New Product</a>
+    <div class="products">
+        <% products.forEach(product => { %>
+            <div class="product">
+                <h2><%= product.name %></h2>
+                <p>Quantity: <%= product.quantity %></p>
+                <p>Price: $<%= product.price %></p>
+                <a href="/edit/<%= product._id %>">✏️ Edit</a>
+                <a href="/delete/<%= product._id %>" onclick="return confirm('Are you sure?')">❌ Delete</a>
+            </div>
+        <% }); %>
+    </div>
+</body>
+</html>
